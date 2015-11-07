@@ -10,10 +10,11 @@ def import_lists(filename):
     table = csv.DictReader(file_d)
     for line in table:
         line.pop('size')
-        if list(col.find({'code': line['code']},projection={'_id': False})) == []:
-            resp = col.insert(line)
-        else:
+        if bool(col.find_one({'code': line['code']})):
             resp = col.update_one({'code': line['code']}, {'$set': {'files_2015': line['files_2015']} })
+        else:
+            resp = col.insert(line)
+            
             
             
 import_lists("files_list_with_codes_2014.csv")
