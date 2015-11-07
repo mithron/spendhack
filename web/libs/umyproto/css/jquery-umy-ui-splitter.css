@@ -1,0 +1,54 @@
+.umySplitter
+{
+    /*overflow: hidden;*/
+    position: relative;
+}
+
+.umySplitterSplitbar-vertical
+{
+    height: 100%;
+    position: absolute;
+}
+.umySplitterSplitline-vertical
+{
+    height: 100%;
+    width: 0;
+    border-right: 1px solid #A4A4AB;
+}
+.umySplitterSplitbar-horizontal
+{
+    width: 100%;
+    position: absolute;
+}
+.umySplitterSplitline-horizontal
+{
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid #A4A4AB;
+}
+.umySplitterButton-horizontal
+{
+    cursor: pointer;
+    background-color: #A4A4AB;
+    border-radius: 5px;
+}
+.umySplitterButton-vertical
+{
+    cursor: pointer;
+    background-color: #A4A4AB;
+    border-radius: 5px;
+}
+.umySplitterSplitbarCollapsed
+{
+    cursor: default;
+}
+.umySplitterPanel
+{
+    border: none;
+    /*outline: none;*/
+    position: absolute;
+    /*overflow: hidden;*/
+    width: 100%;
+    height: 100%;
+}
+
