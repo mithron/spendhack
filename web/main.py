@@ -8,6 +8,7 @@ import tornado.ioloop
 import tornado.options
 import tornado.web
 from tornado.template import Loader
+import tornado.log
 
 from tornado.options import define, options
 
@@ -41,16 +42,29 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
 class OutputHandler(BaseHandler):
-    def get(self, name=None):
-        if name:
-            data = self.col().find({'$or': {'name': str(name), 'code': str(name)} })
+    def get(self, fname=None):
+        print(str(fname))
+        if fname:
+            data2 = self.col.find_one({'$or': [{'name': str(fname)}, {'code': str(fname)}] })
+            print('!!!!!!!!!!!!!!!!!!')
             self.write(self.templates().load("output.html").generate(data))
         else:
-            self.write("404 NOT FOUND")
-
+            data2 = self.col.find_one({'code': '28.63.12.119'})
+        self.write(self.templates().load("output.html").generate(data = data2))
+        
+    def post(self, fname=None):
+        print(str(fname))
+        if fname:
+            data2 = self.col.find_one({'$or': [{'name': str(fname)}, {'code': str(fname)}] })
+            print('!!!!!!!!!!!!!!!!!!')
+            self.write(self.templates().load("output.html").generate(data))
+        else:
+            data2 = self.col.find_one({'code': '28.63.12.119'})
+        self.write(self.templates().load("output.html").generate(data = data2))
 
 class SearchHandler(BaseHandler):
     def get(self):
+     
         self.write(self.templates().load("input.html").generate(title = "Поиск по коду ОКДБ или наименованию"))
 
 

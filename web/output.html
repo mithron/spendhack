@@ -81,11 +81,36 @@
                         <col style="width: 33%;">
                     </colgroup>
                         <tr>
-                                <td style="width: 100%; height: 40px;" colspan="3">Test</td>
+                                <td style="width: 100%; height: 40px;" colspan="3">Наименование: {{ escape(data["name"]) }} Код: {{ escape(data["code"]) }}  </td>
                         </tr>
                         <tr>
-                                <td style="width: 100%; height: 40px;" colspan="3">Test2</td>
+                                <td style="width: 100%; height: 40px;" colspan="3">Медиана 2014:   , Медиана 2015: {{ escape(str(data["price_med15"])) }} </td>
                         </tr>
+                    
+                        <tr>
+                                <td style="width: 100%; height: 40px;" colspan="3">Основные единицы измерения 2014:  , Основные единицы измерения 2015:  {{ escape(data["unit_mod15"]) }} </td>
+                        </tr>
+                        
+                        <tr>
+                                <td style="width: 100%; height: 40px;" colspan="3">Выбросы по единицам измерения: <ul>
+                                    {% for item in data["mod_outliers"] %}
+                                            <li> <a href='{{ escape(item["link"])}}'>СМ. {{ escape(item['link'])}}</a> - Единица измерения {{ escape(item['OKEI_name']) }} </li>
+                                    {% end%}
+                                    </ul>
+                                     </td>
+                                </tr>
+                        
+                        <tr>
+                                <td style="width: 100%; height: 40px;" colspan="3">Выбросы по значениям: 
+                                <ul>
+                                    {% for item in data["med_outliers"] %}
+                                            <li> <a href='{{ escape(item["link"])}}'>СМ. {{ escape(item['link'])}}</a> - Цена {{ escape(item['product_price'])}} </li>
+                                    {% end%}
+                                    </ul>
+                                </td>
+                        </tr>
+                        
+
             </table>
         </div>
     </div>
